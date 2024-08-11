@@ -392,7 +392,7 @@ public class ToolRentalSystem {
 
             
             // Set up the scene and stage
-            Scene scene2 = new Scene(gridPane2, 400, 250);
+            Scene scene2 = new Scene(gridPane2, 400, 400);
             secondaryStage.setTitle("Rental Agreement");
             secondaryStage.setScene(scene2);
             secondaryStage.show();

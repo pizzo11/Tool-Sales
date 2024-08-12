@@ -167,10 +167,10 @@ public class ToolRentalSystem {
             boolean weekendCharge = false;
             boolean holidayCharge = false;
             int chargeDays = 0;
-            RentalAgreementInfo rentalAgreementInfo = null;
+            //RentalAgreementInfo rentalAgreementInfo = null;
 
             String customerId = customerIdField.getValue();
-            rentalAgreementInfo.setCustId(customerId);
+            //rentalAgreementInfo.setCustId(customerId);
             String discountPercentStr = discountPercentField.getText();
             String daysToRent = daysToRentField.getText();
 
@@ -402,9 +402,9 @@ public class ToolRentalSystem {
             secondaryStage.setScene(scene2);
             secondaryStage.show();
         }
-
         public static void main(String[] args) {
             launch(args);
         }
+
     }
 }

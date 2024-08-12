@@ -167,8 +167,10 @@ public class ToolRentalSystem {
             boolean weekendCharge = false;
             boolean holidayCharge = false;
             int chargeDays = 0;
+            RentalAgreementInfo rentalAgreementInfo = null;
 
             String customerId = customerIdField.getValue();
+            rentalAgreementInfo.setCustId(customerId);
             String discountPercentStr = discountPercentField.getText();
             String daysToRent = daysToRentField.getText();
 
@@ -178,6 +180,7 @@ public class ToolRentalSystem {
                 showError(validationError);
                 return;
             }
+
 
             int rentalDays = (int) Double.parseDouble(daysToRent);
             float discountPct = (float) Double.parseDouble(discountPercentStr);
@@ -326,6 +329,7 @@ public class ToolRentalSystem {
             return DOW != DayOfWeek.SATURDAY && DOW != DayOfWeek.SUNDAY;
         }
 
+        // RentalAgreement builds a second window with the Agreement info
         private void RentalAgreement(String customerID, String customerName,
                                     String toolCode, String toolType, String toolBrand,
                                     float dailyRentalFee, int rentalDays, LocalDate checkoutDate,

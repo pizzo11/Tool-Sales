@@ -79,8 +79,8 @@ public class ToolRentalSystem {
         @Override
         public void start(Stage primaryStage) {
             ToolRentalSystem system;
-
             system = new ToolRentalSystem();
+
             system.addTool(new Tool("CHNS", "Chainsaw", "Stihl"));
             system.addTool(new Tool("LADW", "Ladder", "Werner"));
             system.addTool(new Tool("JAKD", "Jackhammer", "DeWalt"));
@@ -160,17 +160,14 @@ public class ToolRentalSystem {
             String itemBrand = "";
             String customerName = "";
             Float dailyCharge = 0.00F; // from table
-            Float invoiceDailyCharge = 0.00F;
             Float totalCharge = 0.00F; // invoice total
             Float afterDiscountTotal = 0.00F;
             boolean weekdayCharge = false;
             boolean weekendCharge = false;
             boolean holidayCharge = false;
             int chargeDays = 0;
-            //RentalAgreementInfo rentalAgreementInfo = null;
 
             String customerId = customerIdField.getValue();
-            //rentalAgreementInfo.setCustId(customerId);
             String discountPercentStr = discountPercentField.getText();
             String daysToRent = daysToRentField.getText();
 
@@ -210,27 +207,43 @@ public class ToolRentalSystem {
                     holidayCharge = rf.isHolidayCharge();
                 }
 
-            LocalDate currentDate = startDate;
-            while(!currentDate.isAfter(endDate)){
+            RentalAgreementInfo rentalAgreementInfo = new RentalAgreementInfo( /* itemId,
+                                                                                customerId,
+                                                                                itemToolType,
+                                                                                itemBrand,
+                                                                                customerName,
+                                                                                dailyCharge,
+                                                                                weekdayCharge,
+                                                                                weekendCharge,
+                                                                                holidayCharge,
+                                                                                startDate,
+                                                                                rentalDays,
+                                                                                chargeDays,
+                                                                                totalCharge,
+                                                                                discountPct,
+                                                                     0.00F, //discount amount
+                                                                                afterDiscountTotal*/
+                                                                                );
 
-                if (holidayCharge && isHoliday(currentDate)){
-                    invoiceDailyCharge = dailyCharge;
-                    chargeDays +=1;
-                } else if (weekdayCharge && isWeekday(currentDate)){
-                    invoiceDailyCharge = dailyCharge;
-                    chargeDays +=1;
-                } else if (weekendCharge && !isWeekday(currentDate)){
-                    invoiceDailyCharge = dailyCharge;
-                    chargeDays +=1;
-                } else {
-                    invoiceDailyCharge = 0F;
-                }
-                totalCharge += invoiceDailyCharge;
+            rentalAgreementInfo.setItemId(itemId);
+            rentalAgreementInfo.setCustId(customerId);
+            rentalAgreementInfo.setItemToolType(itemToolType);
+            rentalAgreementInfo.setItemToolBrand(itemBrand);
+            rentalAgreementInfo.setCustomerName(customerName);
+            rentalAgreementInfo.setDailyRentalFee(dailyCharge);
+            rentalAgreementInfo.setRentalDays(rentalDays);
+            rentalAgreementInfo.setStartDate(startDate);
+            rentalAgreementInfo.setChargeDays(chargeDays);
+            rentalAgreementInfo.setWeekdayCharge(weekdayCharge);
+            rentalAgreementInfo.setWeekendCharge(weekendCharge);
+            rentalAgreementInfo.setHolidayCharge(holidayCharge);
+            rentalAgreementInfo.setTotalCharge(totalCharge);
+            rentalAgreementInfo.setDiscountPct(discountPct);
+            rentalAgreementInfo.setDiscountAmt(totalCharge * discountPct/100);
+            rentalAgreementInfo.setAfterDiscountTotal(afterDiscountTotal);
 
-                currentDate = currentDate.plusDays(1);
-            }
+            RentalCalculations rentalCalculations = new RentalCalculations(rentalAgreementInfo);
 
-            afterDiscountTotal = (float) (totalCharge - (totalCharge * discountPct/100));
 
             RentalAgreement(customerId, customerName,
                                 itemId, itemToolType, itemBrand,

@@ -22,7 +22,7 @@ public class RentalAgreementInfo {
     private Float discountAmt;
     private Float afterDiscountTotal;
 
-    public RentalAgreementInfo( String itemId,
+    public RentalAgreementInfo( /*String itemId,
                                 String custId,
                                 String itemToolType,
                                 String itemToolBrand,
@@ -37,8 +37,9 @@ public class RentalAgreementInfo {
                                 Float totalCharge,
                                 Float discountPct,
                                 Float discountAmt,
-                                Float afterDiscountTotal) {
-        this.itemId = itemId;
+                                Float afterDiscountTotal*/
+                                ) {
+        /*this.itemId = itemId;
         this.custId = custId;
         this.itemToolType = itemToolType;
         this.itemToolBrand = itemToolBrand;
@@ -53,7 +54,7 @@ public class RentalAgreementInfo {
         this.totalCharge = totalCharge;
         this.discountPct = discountPct;
         this.discountAmt = discountAmt;
-        this.afterDiscountTotal = afterDiscountTotal;
+        this.afterDiscountTotal = afterDiscountTotal;*/
     }
 
     public String getItemId() {

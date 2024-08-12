@@ -255,7 +255,8 @@ public class ToolRentalSystem {
             System.out.println("Month Value: " + startDate.getMonthValue());
         }
 
-        private String validateOrder(String itemId, String customerId, String discountPercentStr, String daysToRent){
+        public static String validateOrder(String itemId, String customerId,
+                                           String discountPercentStr, String daysToRent){
 
             // Validate Item
             if(itemId == null){
